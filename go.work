@@ -1,0 +1,8 @@
+go 1.25
+
+use (
+	./tools/input
+	./src/2025/day1
+	./src
+	./libs/aoc_shared
+)

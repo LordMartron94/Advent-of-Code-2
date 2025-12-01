@@ -1,0 +1,60 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"build_systems": [
+		{
+			"name": "Advent of Code Project",
+			"working_dir": "${project_path}",
+			"env": {
+				// "PATH": "/home/user/.local/bin:/usr/bin:/bin"
+				"GOFLAGS": "-mod=vendor",
+				"FORCE_COLOR": "1",
+			},
+			"variants": [
+				{
+					"name": "Run Today",
+					"target": "terminus_exec",
+					"cancel": "terminus_cancel_build",
+					"shell_cmd": "script -qfc './run.sh --manual --today' /dev/null",
+					"working_dir": "${project_path}",
+					"quiet": false,
+				},
+				{
+					"name": "Run Custom",
+					"target": "terminus_exec",
+					"cancel": "terminus_cancel_build",
+					"shell_cmd": "script -qfc './run.sh --manual' /dev/null",
+					"working_dir": "${project_path}",
+					"quiet": false,
+				},
+				{
+					"name": "Download Input",
+					"target": "terminus_exec",
+					"cancel": "terminus_cancel_build",
+					"shell_cmd": "script -qfc './download_input.sh' /dev/null",
+					"working_dir": "${project_path}",
+					"quiet": false,
+				},
+				{
+					"name": "Add Module",
+					"target": "terminus_exec",
+					"cancel": "terminus_cancel_build",
+					"shell_cmd": "./add_module.sh",
+					"working_dir": "${project_path}",
+					"quiet": false,
+				},
+				{
+					"name": "Refresh Vendor",
+					"target": "terminus_exec",
+					"cancel": "terminus_cancel_build",
+					"shell_cmd": "./refresh_vendor.sh",
+					"working_dir": "${project_path}",
+					"quiet": false,
+				},
+			],
+		}
+	]
+}

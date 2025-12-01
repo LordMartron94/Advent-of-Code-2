@@ -1,0 +1,1086 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Prin",
+				"Printf"
+			],
+			[
+				"Mark",
+				"MarkdownStyleClass"
+			],
+			[
+				"Ki",
+				"Kind"
+			],
+			[
+				"P",
+				"PageElement"
+			],
+			[
+				"ast",
+				"ast"
+			],
+			[
+				"for",
+				"formforge"
+			],
+			[
+				"Pri",
+				"Printf"
+			],
+			[
+				"pars",
+				"parsing.MarkdownToFormforge"
+			],
+			[
+				"M",
+				"MarkdownParserCreate"
+			],
+			[
+				"pac",
+				"package sovereign"
+			],
+			[
+				"content",
+				"[]byte(content)"
+			],
+			[
+				"pack",
+				"package parsing"
+			],
+			[
+				"lex",
+				"lexarch"
+			],
+			[
+				"df",
+				"dfaStateMachine"
+			],
+			[
+				"PR",
+				"Println"
+			],
+			[
+				"Pr",
+				"Printf"
+			],
+			[
+				"Markd",
+				"MarkdownParserDestroy"
+			],
+			[
+				"Sp",
+				"Sprintf"
+			],
+			[
+				"Markdo",
+				"MarkdownParserCreate"
+			],
+			[
+				"TextLexer",
+				"TextLexerLex"
+			],
+			[
+				"TextLexerRu",
+				"TextLexerRuleCreate"
+			],
+			[
+				"DynamicLinearAllocatorMalloc",
+				"DynamicLinearAllocatorMallocUnsafe"
+			],
+			[
+				"fu",
+				"func(...) {}"
+			],
+			[
+				"Text",
+				"TextLexerCreate"
+			],
+			[
+				"Dynamic",
+				"DynamicLinearAllocatorDestroy"
+			],
+			[
+				"uint",
+				"uint64()"
+			],
+			[
+				"DynamicL",
+				"DynamicLinearAllocatorCreate"
+			],
+			[
+				"share",
+				"shared"
+			],
+			[
+				"shar",
+				"shared"
+			],
+			[
+				"fre",
+				"freshData.ActiveViewID"
+			],
+			[
+				"vie",
+				"viewID"
+			],
+			[
+				"view",
+				"viewID"
+			],
+			[
+				"sh",
+				"shared.SovereignNameSpaceUUID"
+			],
+			[
+				"C",
+				"CtrlKey"
+			],
+			[
+				"Op",
+				"OpenZettelReplaceActive"
+			],
+			[
+				"Zet",
+				"ZettelData.ActiveZettelID"
+			],
+			[
+				"compo",
+				"components"
+			],
+			[
+				"compon",
+				"components.UIContext"
+			],
+			[
+				"DBWo",
+				"DBWorkspaceGetSingleton"
+			],
+			[
+				"main",
+				"mainContentRetrievers"
+			],
+			[
+				"Wi",
+				"WithClass"
+			],
+			[
+				"Con",
+				"Contains"
+			],
+			[
+				"peris",
+				"persistence.ZettelData{}"
+			],
+			[
+				"Rend",
+				"ElementRender"
+			],
+			[
+				"Z",
+				"ZettelContentArea"
+			],
+			[
+				"With",
+				"WithID"
+			],
+			[
+				"Wit",
+				"WithClass"
+			],
+			[
+				"Pa",
+				"PageElement"
+			],
+			[
+				"op",
+				"openedZettelIDs"
+			],
+			[
+				"zett",
+				"zettelHeaderTabCreate"
+			],
+			[
+				"ap",
+				"append(zettelTabs, )"
+			],
+			[
+				"Zett",
+				"ZettelTab"
+			],
+			[
+				"B",
+				"Button"
+			],
+			[
+				"Ze",
+				"ZettelContentArea"
+			],
+			[
+				"pers",
+				"persistence"
+			],
+			[
+				"E",
+				"PageElement"
+			],
+			[
+				"DBZe",
+				"DBZettelGet"
+			],
+			[
+				"DBFo",
+				"DBFolderListIDs"
+			],
+			[
+				"DBZ",
+				"DBZettelGet"
+			],
+			[
+				"DBZet",
+				"DBZettelListIDs"
+			],
+			[
+				"Del",
+				"DeleteZettel"
+			],
+			[
+				"Ren",
+				"RenameZettel"
+			],
+			[
+				"DBFol",
+				"DBFolderUpdate"
+			],
+			[
+				"Create",
+				"CreateNewZettel"
+			],
+			[
+				"Lay",
+				"RetrieveLayout"
+			],
+			[
+				"per",
+				"persistence"
+			],
+			[
+				"packa",
+				"package logic"
+			],
+			[
+				"Serv",
+				"ServiceIDCounter"
+			],
+			[
+				"ser",
+				"servicesMutex"
+			],
+			[
+				"serv",
+				"servicesMutex.Lock"
+			],
+			[
+				"Ser",
+				"ServiceID"
+			],
+			[
+				"Service",
+				"Service[TContext]"
+			],
+			[
+				"Se",
+				"ServiceID"
+			],
+			[
+				"new",
+				"newService"
+			],
+			[
+				"Servi",
+				"ServiceID"
+			],
+			[
+				"data",
+				"data.openedZettel.UUID"
+			],
+			[
+				"dat",
+				"data.openedZettel"
+			],
+			[
+				"zet",
+				"zettelID"
+			],
+			[
+				"SP",
+				"Sprintf"
+			],
+			[
+				"z",
+				"zettelID"
+			],
+			[
+				"shared",
+				"shared"
+			],
+			[
+				"StorageZettel",
+				"StorageZettelGet"
+			],
+			[
+				"stora",
+				"storage"
+			],
+			[
+				"fact",
+				"factory.LayoutData{}"
+			],
+			[
+				"facto",
+				"factory"
+			],
+			[
+				"c",
+				"ctx.SessionID"
+			],
+			[
+				"se",
+				"sessionID"
+			],
+			[
+				"pl",
+				"plugin.Page[zettelPageData]{}"
+			],
+			[
+				"ze",
+				"zettelPageData"
+			],
+			[
+				"plugi",
+				"plugin"
+			],
+			[
+				"res",
+				"resizerID"
+			],
+			[
+				"EventDr",
+				"EventDragEnd"
+			],
+			[
+				"user",
+				"-webkit-user-drag"
+			],
+			[
+				"cl",
+				"ClientX"
+			],
+			[
+				"lay",
+				"layoutData.SidebarData.WidthPx"
+			],
+			[
+				"la",
+				"layoutData.UUID"
+			],
+			[
+				"StorageLay",
+				"StorageLayoutDataReplace"
+			],
+			[
+				"Layou",
+				"StorageLayoutDataRetrieve"
+			],
+			[
+				"LayoutData",
+				"StorageLayoutDataRetrieve"
+			],
+			[
+				"Sid",
+				"SidebarDataCreate"
+			],
+			[
+				"fun",
+				"func(...) {}"
+			],
+			[
+				"DendriteSide",
+				"DendriteSidebarResizableElementCreate"
+			],
+			[
+				"back",
+				"backgroundUnlock"
+			],
+			[
+				"bac",
+				"backgroundUnlock"
+			],
+			[
+				"b",
+				"backgroundUnlock"
+			],
+			[
+				"lo",
+				"lockBackground"
+			],
+			[
+				"canc",
+				"cancelBtnID"
+			],
+			[
+				"conf",
+				"confirmBtnID"
+			],
+			[
+				"fold",
+				"folderRepository"
+			],
+			[
+				"StorageZ",
+				"StorageZettelDelete"
+			],
+			[
+				"EventGl",
+				"EventGlobalKeyDown"
+			],
+			[
+				"StorageZettelCrea",
+				"StorageZettelCreateEmpty"
+			],
+			[
+				"StorageZet",
+				"StorageZettelMove"
+			],
+			[
+				"StorageZett",
+				"StorageZettelMove"
+			],
+			[
+				"ref",
+				"refreshAction"
+			],
+			[
+				"DendriteElementMakeDrop",
+				"DendriteElementMakeDropTarget"
+			],
+			[
+				"Make",
+				"DendriteElementMakeDropTarget"
+			],
+			[
+				"DendriteElem",
+				"DendriteElementMakeDropTarget"
+			],
+			[
+				"Ev",
+				"EventType"
+			],
+			[
+				"ver",
+				"verifyData"
+			],
+			[
+				"si",
+				"sideBarFn"
+			],
+			[
+				"Set",
+				"HTMLSet"
+			],
+			[
+				"sett",
+				"settings.VaultLocation"
+			],
+			[
+				"Get",
+				"GetPluginSettings"
+			],
+			[
+				"WI",
+				"WithClass"
+			],
+			[
+				"Spr",
+				"Sprintf"
+			],
+			[
+				"G",
+				"GetPrefixedURL"
+			],
+			[
+				"axon",
+				"axon.NoOp"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Monolith Project",
+					""
+				],
+				[
+					"Monolith Project",
+					"Run (Default)"
+				],
+				[
+					"Monolith Project",
+					"Run (Manual)"
+				],
+				[
+					"Monolith Project",
+					"Run (Manual - enable js)"
+				],
+				[
+					"Monolith Project",
+					"Run (Tests)"
+				],
+				[
+					"Monolith Project",
+					"Run ID Gen"
+				],
+				[
+					"Monolith Project",
+					"Run Project Analysis"
+				],
+				[
+					"Monolith Project",
+					"Run Project Benchmark"
+				],
+				[
+					"Monolith Project",
+					"Add Module"
+				],
+				[
+					"Monolith Project",
+					"Refresh Vendor"
+				]
+			],
+			[
+				"Monolith Project",
+				"Run (Tests)"
+			]
+		],
+		[
+			[
+				[
+					"Monolith Project",
+					""
+				],
+				[
+					"Monolith Project",
+					"Run (Default)"
+				],
+				[
+					"Monolith Project",
+					"Run (Manual)"
+				],
+				[
+					"Monolith Project",
+					"Run (Tests)"
+				],
+				[
+					"Monolith Project",
+					"Run ID Gen"
+				],
+				[
+					"Monolith Project",
+					"Run Project Analysis"
+				],
+				[
+					"Monolith Project",
+					"Run Project Benchmark"
+				],
+				[
+					"Monolith Project",
+					"Add Module"
+				],
+				[
+					"Monolith Project",
+					"Refresh Vendor"
+				]
+			],
+			[
+				"Monolith Project",
+				"Run (Manual)"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"re",
+				"LSP: Restart Server"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"wor",
+				"Word Wrap: Toggle"
+			],
+			[
+				"toggl",
+				"ScopeView: Toggle Scope Display"
+			],
+			[
+				"toggle",
+				"ScopeView: Toggle Scope Display"
+			],
+			[
+				"res",
+				"LSP: Restart Server"
+			],
+			[
+				"restar",
+				"LSP: Restart Server"
+			],
+			[
+				"rest",
+				"LSP: Restart Server"
+			],
+			[
+				"diagno",
+				"LSP: Toggle Diagnostics Panel"
+			],
+			[
+				"restare",
+				"LSP: Restart Server"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"enab",
+				"LSP: Enable Language Server in Project"
+			],
+			[
+				"lsp disab",
+				"LSP: Disable Language Server in Project"
+			],
+			[
+				"restart ",
+				"LSP: Restart Server"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"intall p",
+				"Package Control: Install Package"
+			],
+			[
+				"displa",
+				"ScopeView: Toggle Scope Display"
+			],
+			[
+				"select",
+				"UI: Select Theme"
+			],
+			[
+				"remove ",
+				"Package Control: Remove Package"
+			],
+			[
+				"select the",
+				"UI: Select Theme"
+			],
+			[
+				"enable ",
+				"Package Control: Enable Package"
+			],
+			[
+				"defaul",
+				"ChannelRepositoryTools: Test Default Channel"
+			],
+			[
+				"disable pac",
+				"Package Control: Disable Package"
+			],
+			[
+				"channel",
+				"ChannelRepositoryTools: Test Default Channel"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			],
+			[
+				"markdown",
+				"MarkdownEditing: Run markdownlint"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"toggle dis",
+				"ScopeView: Toggle Scope Display"
+			],
+			[
+				"scope",
+				"ScopeView: Toggle Scope Display"
+			],
+			[
+				"add repo",
+				"Package Control: Add Repository"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 249.0,
+		"history":
+		[
+			"import shutil; print(shutil.which(\"node\"))"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/user/Repos/Advent-of-Code-2"
+	],
+	"file_history":
+	[
+		"/home/user/Repos/monolith/apps/sovereign/parsing_tests.go",
+		"/home/user/Repos/monolith/libs/formforge/page_element.go",
+		"/home/user/Repos/monolith/apps/sovereign/parsing/markdown_parser.go",
+		"/home/user/Repos/monolith/apps/sovereign/parsing/doc.go",
+		"/home/user/Repos/monolith/apps/sovereign/plugin.go",
+		"/home/user/Repos/monolith/libs/formforge/elements.go",
+		"/home/user/Repos/monolith/data/sovereign/workspaceData.json",
+		"/home/user/Repos/monolith/apps/sovereign/logic/sync_ops.go",
+		"/home/user/Repos/monolith/vendor/github.com/yuin/goldmark/parser/parser.go",
+		"/home/user/Repos/monolith/tests/entry_test.go",
+		"/home/user/Repos/monolith/apps/sovereign/go.mod",
+		"/home/user/Repos/monolith/apps/sovereign/markdown_parser_tests.go",
+		"/home/user/Repos/monolith/apps/sovereign/markdown_parser.go",
+		"/home/user/Repos/monolith/libs/lexarch/lexer.go",
+		"/home/user/Repos/monolith/libs/autarch/regex/regex_thompson.go",
+		"/home/user/Repos/monolith/libs/autarch/regex/regex_ast.go",
+		"/home/user/Repos/monolith/libs/autarch/regex/regex_parser.go",
+		"/home/user/Repos/monolith/libs/autarch/regex/regex_tokenizer.go",
+		"/home/user/Repos/monolith/libs/autarch/regex/regex_to_nfa.go",
+		"/home/user/Repos/monolith/libs/dendrite/factory.go",
+		"/home/user/Repos/monolith/apps/sovereign/logic/workspace_ops.go",
+		"/home/user/Repos/monolith/libs/axon/assets/scripts/kernel.js",
+		"/home/user/Repos/monolith/generated_monolith.toml",
+		"/home/user/Repos/monolith/assets/styles/pages/_zettels.scss",
+		"/home/user/Repos/monolith/apps/sovereign/components/sidebar.go",
+		"/home/user/Repos/monolith/apps/sovereign/components/zettel_layout_renderer.go",
+		"/home/user/Repos/monolith/apps/sovereign/components/zettel_layout_dropzones.go",
+		"/home/user/Repos/monolith/libs/axon/events.go",
+		"/home/user/Repos/monolith/run.sh",
+		"/home/user/Repos/monolith/monolith.sublime-project",
+		"/home/user/Repos/monolith/apps/sovereign/shared/dom_ids.go",
+		"/home/user/Repos/monolith/apps/sovereign/components/zettel_header_bar.go",
+		"/home/user/Repos/monolith/apps/sovereign/pages/zettels.go",
+		"/home/user/Repos/monolith/apps/sovereign/viewmodel/zettels_viewmodel.go",
+		"/home/user/Repos/monolith/apps/sovereign/persistence/workspace_db.go",
+		"/home/user/Repos/monolith/apps/sovereign/persistence/workspace_structs.go",
+		"/home/user/Repos/monolith/apps/sovereign/components/sidebar_elements.go",
+		"/home/user/Repos/monolith/libs/axon/internal/event_handler.go",
+		"/home/user/Repos/monolith/apps/sovereign/pages/about.go",
+		"/home/user/Repos/monolith/apps/sovereign/pages/factory/page_factory.go",
+		"/home/user/Repos/monolith/apps/sovereign/components/zettel_content_area.go",
+		"/home/user/Repos/monolith/libs/dendrite/modal.go",
+		"/home/user/Repos/monolith/apps/sovereign/persistence/setup.go",
+		"/home/user/Repos/monolith/assets/styles/main.scss",
+		"/home/user/Repos/monolith/assets/styles/_sovereign_base.scss",
+		"/home/user/Repos/monolith/apps/sovereign/logic/folder_ops.go",
+		"/home/user/Repos/monolith/apps/sovereign/components/modal.go",
+		"/home/user/Repos/monolith/apps/sovereign/components/context.go",
+		"/home/user/Repos/monolith/apps/sovereign/viewmodel/sidebar_viewmodel.go",
+		"/home/user/Repos/monolith/apps/sovereign/viewmodel/doc.go",
+		"/home/user/Repos/monolith/apps/sovereign/pages/factory/layout.go",
+		"/home/user/Repos/monolith/apps/sovereign/logic/layout_ops.go",
+		"/home/user/Repos/monolith/apps/sovereign/logic/zettel_ops.go",
+		"/home/user/Repos/monolith/libs/foundation/system/fs.go",
+		"/home/user/Repos/monolith/apps/sovereign/persistence/folder_db.go",
+		"/home/user/Repos/monolith/apps/sovereign/persistence/layout_db.go",
+		"/home/user/Repos/monolith/apps/sovereign/storage/folder_repository.go",
+		"/home/user/Repos/monolith/apps/sovereign/storage/zettel_repository.go",
+		"/home/user/Repos/monolith/apps/sovereign/service/doc.go",
+		"/home/user/Repos/monolith/apps/sovereign/service/zettel.go",
+		"/home/user/Repos/monolith/apps/sovereign/persistence/doc.go",
+		"/home/user/Repos/monolith/apps/sovereign/logic/doc.go",
+		"/home/user/Repos/monolith/apps/sovereign/persistence/zettel_db.go",
+		"/home/user/Repos/monolith/libs/foundation/system/doc.go",
+		"/home/user/Repos/monolith/src/plugin/plugin.go",
+		"/home/user/Repos/monolith/apps/sovereign/service/api.go",
+		"/home/user/Repos/monolith/apps/sovereign/pages/home.go",
+		"/home/user/Repos/monolith/data/sovereign/folders.json",
+		"/home/user/Repos/monolith/apps/sovereign/storage/layout_data_repository.go",
+		"/home/user/Repos/monolith/assets/styles/_base.scss",
+		"/home/user/Repos/monolith/apps/sovereign/storage/storage.go",
+		"/home/user/Repos/monolith/libs/persistence/json_store.go",
+		"/home/user/Repos/monolith/libs/axon/ops.go",
+		"/home/user/Repos/monolith/libs/dendrite/api.go",
+		"/home/user/Repos/monolith/libs/dendrite/context_menu.go",
+		"/home/user/Repos/monolith/assets/styles/components/_button.scss",
+		"/home/user/Repos/monolith/assets/styles/overlays/_settings.scss",
+		"/home/user/Repos/monolith/assets/styles/components/_header.scss",
+		"/home/user/Repos/monolith/assets/styles/pages/_missing.scss",
+		"/home/user/Repos/monolith/assets/styles/pages/_about.scss",
+		"/home/user/Repos/monolith/assets/styles/components/_modal.scss",
+		"/home/user/Repos/monolith/assets/styles/overlays/_context_menu.scss",
+		"/home/user/Repos/monolith/apps/sovereign/components/setup.go",
+		"/home/user/Repos/monolith/assets/styles/components/_forms.scss",
+		"/home/user/Repos/monolith/data/sovereign/zettels.json",
+		"/home/user/Repos/monolith/libs/echo/api.go",
+		"/home/user/.config/sublime-text/Packages/Noesis-Coding-Theme/Noesis_Color.sublime-color-scheme",
+		"/home/user/Repos/monolith/src/bootstrap/bootstrapper.go",
+		"/home/user/Repos/monolith/apps/sovereign/shared/prefix.go",
+		"/home/user/Repos/monolith/apps/dialecton/src/plugin.go",
+		"/home/user/Repos/monolith/src/api.go",
+		"/home/user/Repos/monolith/src/app_registry/app.go",
+		"/home/user/Repos/monolith/apps/dialecton/src/storage/folder_repository.go",
+		"/home/user/Repos/monolith/apps/sovereign/storage/doc.go",
+		"/home/user/Repos/monolith/assets/styles/_dialecton_base.scss",
+		"/home/user/Repos/monolith/assets/styles/_variables.scss",
+		"/home/user/Repos/monolith/src/configuration/settings_definitions.go",
+		"/home/user/Repos/monolith/src/components/settings_menu.go",
+		"/home/user/Repos/monolith/src/go.mod",
+		"/home/user/Repos/monolith/src/configuration/config.go",
+		"/home/user/Repos/monolith/monolith.toml",
+		"/home/user/Repos/monolith/apps/sovereign/shared/namespace.go",
+		"/home/user/Repos/monolith/libs/echo/console_outputter.go",
+		"/home/user/Repos/monolith/libs/echo/shared.go",
+		"/home/user/Repos/monolith/apps/dialecton/src/shared/url.go",
+		"/home/user/Repos/monolith/monolith.example.toml",
+		"/home/user/Repos/monolith/assets/styles/pages/_sovereign_about.scss",
+		"/home/user/Repos/monolith/apps/dialecton/src/pages/factory/page_factory.go",
+		"/home/user/Repos/monolith/apps/dialecton/src/components/sidebar.go",
+		"/home/user/Repos/monolith/apps/dialecton/src/pages/home/view.go",
+		"/home/user/Repos/monolith/apps/sovereign/components/title.go",
+		"/home/user/Repos/monolith/apps/sovereign/components/doc.go",
+		"/home/user/Repos/monolith/apps/sovereign/pages/doc.go",
+		"/home/user/Repos/monolith/.gitignore",
+		"/home/user/Repos/monolith/src/shared/namespace.go",
+		"/home/user/Repos/monolith/src/pages/missing.go",
+		"/home/user/Repos/monolith/src/pages/launchpad.go",
+		"/home/user/Repos/monolith/src/bootstrap/namespace.go",
+		"/home/user/Repos/monolith/src/shared",
+		"/home/user/Repos/monolith/src/components/header.go",
+		"/home/user/Repos/monolith/assets/styles/_launchpad.scss",
+		"/home/user/Repos/monolith/libs/echo/file_outputter.go",
+		"/home/user/Repos/monolith/libs/echo/go.mod",
+		"/home/user/Repos/monolith/libs/axon/internal/stream.go",
+		"/home/user/Repos/monolith/libs/axon/internal/server.go",
+		"/home/user/Repos/monolith/libs/conduit/api.go",
+		"/home/user/Repos/monolith/libs/conduit/internal/types.go",
+		"/home/user/Repos/monolith/libs/conduit/internal/router.go"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.LSP Log Panel":
+	{
+		"height": 124.0,
+		"history":
+		[
+		]
+	},
+	"output.Terminus Build Results":
+	{
+		"height": 578.0,
+		"history":
+		[
+		]
+	},
+	"output.diagnostics":
+	{
+		"height": 370.0,
+		"history":
+		[
+		]
+	},
+	"output.exec":
+	{
+		"height": 760.0,
+		"history":
+		[
+		]
+	},
+	"output.find_results":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"pinned_build_system": "Monolith Project",
+	"project": "advent-of-code-2.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"api condu",
+				"libs/conduit/api.go"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"lsp_show_inlay_hints": true
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 307.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

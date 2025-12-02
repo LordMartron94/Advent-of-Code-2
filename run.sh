@@ -73,11 +73,8 @@ fi
 # 4. Build (Optimized)
 mkdir -p "$BINARY_DIR"
 
-# Only build if binary is missing OR source is newer than binary
-if [ ! -f "$BINARY_DIR/$BINARY_NAME" ] || [ "$SRC_PATH/runner.go" -nt "$BINARY_DIR/$BINARY_NAME" ]; then
-    echo "🔨 Building Runner..."
-    go build -o "$BINARY_DIR/$BINARY_NAME" "$SRC_PATH"
-fi
+echo "🔨 Building Runner..."
+go build -o "$BINARY_DIR/$BINARY_NAME" "$SRC_PATH"
 
 # 5. Execute
 echo "🚀 Executing Runner..."

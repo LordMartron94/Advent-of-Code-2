@@ -8,6 +8,10 @@ import (
 )
 
 func main() {
+	aocshared.DebugAndLogTask("2025, day 3", run)
+}
+
+func run() {
 	input := aocshared.GetInput(2025, 3)
 	banks := strings.Split(input, "\n")
 

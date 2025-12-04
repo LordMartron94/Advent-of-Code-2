@@ -185,7 +185,7 @@ func solve() {
 			break
 		} else {
 			rollsOfPaperCanLiftOverTime += canMove
-			GridQueuedOpsApply(grid)
+			// GridQueuedOpsApply(grid)
 		}
 	}
 
@@ -204,9 +204,10 @@ func solveIteration(grid *Grid[bool]) int {
 		adjacencies := GridGetAdjacencies(*grid, x, y)
 		if canLift(adjacencies) {
 			rollsOfPaperCanLift++
-			GridQueueOp(grid, func() {
-				GridSetAt(grid, x, y, false)
-			})
+			// GridQueueOp(grid, func() {
+			// 	GridSetAt(grid, x, y, false)
+			// })
+			GridSetAt(grid, x, y, false)
 		}
 	})
 

@@ -15,6 +15,11 @@ type Grid[TCell any] struct {
 	sizeY int
 }
 
+var deltas = []struct{ dx, dy int }{
+	{0, -1}, {1, -1}, {1, 0}, {1, 1},
+	{0, 1}, {-1, 1}, {-1, 0}, {-1, -1},
+}
+
 func GridCreate[TCell any](rows [][]TCell) *Grid[TCell] {
 	if len(rows) < 1 {
 		panic("grid must have at least one row")
@@ -65,45 +70,20 @@ func GridSetAt[TCell any](grid *Grid[TCell], x, y int, cell TCell) error {
 func GridGetAdjacencies[TCell any](grid Grid[TCell], x, y int) [8]TCell {
 	adjacencies := [8]TCell{}
 
-	if cell, err := GridGetAt(grid, x, y-1); err == nil { // top
-		adjacencies[0] = cell
-	}
-
-	if cell, err := GridGetAt(grid, x+1, y-1); err == nil { // top-right-diagonal
-		adjacencies[1] = cell
-	}
-
-	if cell, err := GridGetAt(grid, x+1, y); err == nil { // right
-		adjacencies[2] = cell
-	}
-
-	if cell, err := GridGetAt(grid, x+1, y+1); err == nil { // bottom-right-diagonal
-		adjacencies[3] = cell
-	}
-
-	if cell, err := GridGetAt(grid, x, y+1); err == nil { // bottom
-		adjacencies[4] = cell
-	}
-
-	if cell, err := GridGetAt(grid, x-1, y+1); err == nil { // bottom-left-diagonal
-		adjacencies[5] = cell
-	}
-
-	if cell, err := GridGetAt(grid, x-1, y); err == nil { // left
-		adjacencies[6] = cell
-	}
-
-	if cell, err := GridGetAt(grid, x-1, y-1); err == nil { // top-left-diagonal
-		adjacencies[7] = cell
+	deltaAmount := len(deltas)
+	for i := 0; i < deltaAmount; i++ {
+		delta := deltas[i]
+		if cell, err := GridGetAt(grid, x+delta.dx, y+delta.dy); err == nil {
+			adjacencies[i] = cell
+		}
 	}
 
 	return adjacencies
 }
 
 func GridForEach[TCell any](grid Grid[TCell], exec func(cell TCell, x, y int)) {
-	for y := 0; y < grid.sizeY; y++ {
-		for x := 0; x < grid.sizeX; x++ {
-			cell, _ := GridGetAt(grid, x, y)
+	for y, row := range grid.rows {
+		for x, cell := range row {
 			exec(cell, x, y)
 		}
 	}

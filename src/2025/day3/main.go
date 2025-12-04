@@ -3,7 +3,6 @@ package main
 import (
 	aocshared "aoc_shared"
 	"fmt"
-	"math"
 	"strings"
 )
 
@@ -12,7 +11,7 @@ func main() {
 }
 
 func run() {
-	input := aocshared.GetInput(2025, 3)
+	input := aocshared.GetTestInput(2025, 3)
 	banks := strings.Split(input, "\n")
 
 	joltSum := 0
@@ -33,14 +32,7 @@ func run() {
 }
 
 func processBank(bank string, numDigits int, joltSum *int) {
-	arr := make([]int, len(bank))
-
-	for i, char := range bank {
-		v := int(char - '0')
-		arr[i] = v
-	}
-
-	arraySize := len(arr)
+	arraySize := len(bank)
 	currentNeedleIdx := 0
 
 	bankV := 0
@@ -48,22 +40,25 @@ func processBank(bank string, numDigits int, joltSum *int) {
 	for i := 1; i <= numDigits; i++ {
 		digitsLeftToSeekAfter := numDigits - i
 
-		shiftFactor := int(math.Pow(10, float64(digitsLeftToSeekAfter)))
-		v, vI := getMaxWithIdx(arr, currentNeedleIdx, arraySize-digitsLeftToSeekAfter)
+		v, vI := getMaxWithIdx(bank, currentNeedleIdx, arraySize-digitsLeftToSeekAfter)
 
-		bankV += v * shiftFactor
+		bankV = (bankV * 10) + v
 		currentNeedleIdx = vI + 1
 	}
 
 	*joltSum += bankV
 }
 
-func getMaxWithIdx(s []int, startIdx, endIdx int) (v int, idx int) {
+func getMaxWithIdx(s string, startIdx, endIdx int) (v int, idx int) {
 	maxV := -1
 	maxI := -1
 
 	for i := startIdx; i < endIdx; i++ {
-		v := s[i]
+		v := int(rune(s[i]) - '0')
+
+		if v == 9 {
+			return v, i
+		}
 
 		if v > maxV {
 			maxV = v

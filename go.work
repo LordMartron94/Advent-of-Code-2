@@ -7,4 +7,5 @@ use (
 	./libs/aoc_shared
 	./src/2025/day2
 	./src/2025/day3
+	./src/2025/day4
 )

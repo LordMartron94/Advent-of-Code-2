@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"log"
@@ -83,7 +84,7 @@ func saveInput(year, day int, data []byte) error {
 	return nil
 }
 
-// fetchInput remains focused solely on the HTTP transport.
+// fetchInput handles HTTP transport and data normalization.
 func fetchInput(url, sessionID string) ([]byte, error) {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -109,5 +110,10 @@ func fetchInput(url, sessionID string) ([]byte, error) {
 		return nil, fmt.Errorf("server returned error status: %d", resp.StatusCode)
 	}
 
-	return io.ReadAll(resp.Body)
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read body: %w", err)
+	}
+
+	return bytes.TrimSpace(data), nil
 }

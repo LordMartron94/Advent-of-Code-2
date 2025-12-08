@@ -100,3 +100,23 @@ func DebugAndLogTask(name string, run func()) {
 
 	fmt.Println(output)
 }
+
+type Task struct {
+	Name string
+	Run  func()
+}
+
+// DebugAndLogTasks runs the functions, times it, and prints the result.
+func DebugAndLogTasks(groupName string, tasks ...Task) {
+	var totalDuration time.Duration
+
+	for _, task := range tasks {
+		duration := TimeTask(task.Run)
+		output := FormatDuration(task.Name, duration)
+		fmt.Println(output)
+		totalDuration += duration
+	}
+
+	totalOutput := FormatDuration(groupName, totalDuration)
+	fmt.Println(totalOutput)
+}

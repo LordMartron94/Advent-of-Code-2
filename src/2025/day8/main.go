@@ -180,16 +180,7 @@ func (d *Day8) ConnectBoxes() {
 			slices.Sort(sizes)
 
 			n := len(sizes)
-			switch {
-			case n >= 3:
-				d.part1Result = sizes[n-1] * sizes[n-2] * sizes[n-3]
-			case n == 2:
-				d.part1Result = sizes[0] * sizes[1]
-			case n == 1:
-				d.part1Result = sizes[0]
-			default:
-				d.part1Result = 0
-			}
+			d.part1Result = sizes[n-1] * sizes[n-2] * sizes[n-3]
 
 			part1Done = true
 		}

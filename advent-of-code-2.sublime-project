@@ -1,7 +1,7 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": ".",
 		}
 	],
 	"build_systems": [
@@ -56,5 +56,19 @@
 				},
 			],
 		}
-	]
+	],
+	"settings":
+	{
+		"LSP":
+		{
+			"LSP-basedpyright":
+			{
+				"enabled": false,
+			},
+			"LSP-ruff":
+			{
+				"enabled": false
+			},
+		},
+	},
 }

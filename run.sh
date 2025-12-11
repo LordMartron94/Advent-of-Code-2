@@ -42,6 +42,9 @@ done
 # Execution Logic
 # ────────────────────────────────────────────────
 
+tree -L 8 -I vendor > tree.txt
+NO_COLOR=1 ./run_analyzer.sh > analysis.txt
+
 # 1. Clean
 if [ "$CLEAN_MODE" = true ]; then
     echo "🧹 Cleaning build artifacts..."
@@ -52,8 +55,23 @@ fi
 
 # 2. Test
 if [ "$TESTING_MODE" = true ]; then
-    echo "🧪 Running tests..."
-    go test ./... -v
+    echo "🧪 Testing mode enabled — building and running tests."
+    TESTPKG="./tests"
+    BINARY="./build/aoc_tests.test"
+    DEBUG_TAGS="memforge_debug"
+
+    mkdir -p build
+
+    echo
+    echo "🔹 Building test binary..."
+    echo "   > go test -tags=$DEBUG_TAGS -c -o $BINARY $TESTPKG"
+    go test -tags="$DEBUG_TAGS" -c -o "$BINARY" "$TESTPKG"
+
+    echo
+    echo "🔹 Running tests..."
+    echo "   > $BINARY -test.v ${APP_ARGS[*]}"
+    echo
+    "$BINARY" -test.v "${APP_ARGS[@]}"
     exit 0
 fi
 

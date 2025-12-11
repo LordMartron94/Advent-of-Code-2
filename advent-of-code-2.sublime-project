@@ -39,6 +39,14 @@
 					"quiet": false,
 				},
 				{
+					"name": "Run (Tests)",
+					"target": "terminus_exec",
+					"cancel": "terminus_cancel_build",
+					"shell_cmd": "./run.sh --test",
+					"working_dir": "${project_path}",
+					"quiet": false,
+				},
+				{
 					"name": "Run Project Analysis",
 					"shell_cmd": "./run_analyzer.sh",
 					"working_dir": "${project_path}",

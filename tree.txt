@@ -1,0 +1,228 @@
+.
+├── README.md
+├── add_module.sh
+├── advent-of-code-2.sublime-project
+├── advent-of-code-2.sublime-workspace
+├── analysis.txt
+├── analyzer_config.toml
+├── build
+│   ├── advent_of_code
+│   ├── aoc_runner
+│   ├── aoc_tests.test
+│   ├── id_gen
+│   ├── input_downloader
+│   └── src_analyzer
+├── config.toml
+├── download_input.sh
+├── go.work
+├── libs
+│   ├── aoc_shared
+│   │   ├── doc.go
+│   │   ├── get_input.go
+│   │   ├── go.mod
+│   │   ├── grid.go
+│   │   └── timer.go
+│   ├── blaze
+│   │   ├── README.md
+│   │   ├── blaze_benchmarks_test.go
+│   │   ├── compare
+│   │   │   ├── doc.go
+│   │   │   └── vector.go
+│   │   ├── core
+│   │   │   ├── constants.go
+│   │   │   └── doc.go
+│   │   ├── doc.go
+│   │   ├── elementwise
+│   │   │   ├── doc.go
+│   │   │   └── vector.go
+│   │   ├── go.mod
+│   │   ├── metric
+│   │   │   ├── doc.go
+│   │   │   └── vector.go
+│   │   ├── reduce
+│   │   │   ├── doc.go
+│   │   │   └── vector.go
+│   │   └── scalar
+│   │       ├── doc.go
+│   │       └── vector.go
+│   ├── echo
+│   │   ├── README.md
+│   │   ├── api.go
+│   │   ├── console_outputter.go
+│   │   ├── file_outputter.go
+│   │   ├── go.mod
+│   │   ├── go.sum
+│   │   └── shared.go
+│   ├── essence
+│   │   ├── README.md
+│   │   ├── cli
+│   │   │   └── main.go
+│   │   ├── essence.go
+│   │   ├── go.mod
+│   │   └── uuid.go
+│   ├── foundation
+│   │   ├── README.md
+│   │   ├── benchmarking
+│   │   │   └── benchmarking.go
+│   │   ├── context_manager.go
+│   │   ├── go.mod
+│   │   ├── go.sum
+│   │   ├── hash
+│   │   │   ├── doc.go
+│   │   │   ├── hash_benchmark_test.go
+│   │   │   ├── hash_tests.go
+│   │   │   ├── util.go
+│   │   │   ├── xxh.go
+│   │   │   ├── xxh_amd64.go
+│   │   │   ├── xxh_amd64_avx2.s
+│   │   │   ├── xxh_generic.go
+│   │   │   └── xxh_not_amd64.go
+│   │   ├── system
+│   │   │   ├── doc.go
+│   │   │   └── fs.go
+│   │   ├── testing
+│   │   │   └── assert.go
+│   │   ├── types.go
+│   │   ├── types_benchmarks_test.go
+│   │   └── types_tests.go
+│   ├── memarch
+│   │   ├── README.md
+│   │   ├── factory.go
+│   │   └── go.mod
+│   ├── memcore
+│   │   ├── README.md
+│   │   ├── flags.go
+│   │   ├── flags_windows.go
+│   │   ├── go.mod
+│   │   ├── go.sum
+│   │   ├── mark.go
+│   │   ├── mem_types.go
+│   │   ├── memclear.go
+│   │   ├── memcompare.go
+│   │   ├── memcore_benchmarks_test.go
+│   │   ├── memmap.go
+│   │   ├── memmap_unix.go
+│   │   ├── memmap_windows.go
+│   │   ├── memmove.go
+│   │   ├── prefetch.go
+│   │   ├── prefetch.s
+│   │   ├── prefetch_amd64.go
+│   │   ├── prefetch_not_amd64.go
+│   │   ├── type_handling.go
+│   │   ├── utils.go
+│   │   └── viewing.go
+│   ├── memforge
+│   │   ├── README.md
+│   │   ├── allocator_benchmark_test.go
+│   │   ├── documentation.go
+│   │   ├── dynamic_linear_allocator.go
+│   │   ├── dynamic_linear_allocator_tests.go
+│   │   ├── fixed_linear_allocator.go
+│   │   ├── fixed_linear_allocator_tests.go
+│   │   ├── fixed_manual_allocator.go
+│   │   ├── fixed_manual_allocator_tests.go
+│   │   ├── go.mod
+│   │   ├── memory_debugger.go
+│   │   ├── memory_debugger_disabled.go
+│   │   ├── namespace.go
+│   │   ├── shared.go
+│   │   ├── slab_allocator.go
+│   │   └── slab_allocator_tests.go
+│   └── memstruct
+│       ├── README.md
+│       ├── array.go
+│       ├── array_cursor.go
+│       ├── doc.go
+│       ├── fixed_ordered_list.go
+│       ├── go.mod
+│       ├── hashmap.go
+│       ├── matrix.go
+│       ├── priority_queue.go
+│       ├── queue.go
+│       ├── stack.go
+│       ├── string.go
+│       ├── struct_benchmarks_test.go
+│       ├── utils.go
+│       └── vector.go
+├── note.txt
+├── refresh_vendor.sh
+├── run.sh
+├── run_analyzer.sh
+├── run_id_gen.sh
+├── src
+│   ├── 2025
+│   │   ├── day1
+│   │   │   ├── go.mod
+│   │   │   ├── input.txt
+│   │   │   ├── main.go
+│   │   │   └── test_input.txt
+│   │   ├── day10
+│   │   │   ├── go.mod
+│   │   │   ├── input.txt
+│   │   │   ├── main.go
+│   │   │   ├── part2.py
+│   │   │   └── test_input.txt
+│   │   ├── day11
+│   │   │   ├── go.mod
+│   │   │   ├── input.txt
+│   │   │   ├── main.go
+│   │   │   ├── test_input.txt
+│   │   │   └── test_input_2.txt
+│   │   ├── day2
+│   │   │   ├── go.mod
+│   │   │   ├── input.txt
+│   │   │   ├── main.go
+│   │   │   └── test_input.txt
+│   │   ├── day3
+│   │   │   ├── go.mod
+│   │   │   ├── input.txt
+│   │   │   ├── main.go
+│   │   │   └── test_input.txt
+│   │   ├── day4
+│   │   │   ├── go.mod
+│   │   │   ├── input.txt
+│   │   │   ├── main.go
+│   │   │   └── test_input.txt
+│   │   ├── day5
+│   │   │   ├── go.mod
+│   │   │   ├── input.txt
+│   │   │   ├── main.go
+│   │   │   └── test_input.txt
+│   │   ├── day6
+│   │   │   ├── go.mod
+│   │   │   ├── input.txt
+│   │   │   ├── main.go
+│   │   │   └── test_input.txt
+│   │   ├── day7
+│   │   │   ├── go.mod
+│   │   │   ├── input.txt
+│   │   │   ├── main.go
+│   │   │   └── test_input.txt
+│   │   ├── day8
+│   │   │   ├── go.mod
+│   │   │   ├── input.txt
+│   │   │   ├── main.go
+│   │   │   └── test_input.txt
+│   │   └── day9
+│   │       ├── go.mod
+│   │       ├── input.txt
+│   │       ├── main.go
+│   │       └── test_input.txt
+│   ├── go.mod
+│   └── runner.go
+├── submodules.conf
+├── tests
+│   ├── entry_test.go
+│   └── go.mod
+├── tools
+│   ├── input
+│   │   ├── go.mod
+│   │   ├── go.sum
+│   │   └── main.go
+│   └── src_analyzer
+│       ├── README.md
+│       ├── go.mod
+│       └── main.go
+└── tree.txt
+
+40 directories, 186 files

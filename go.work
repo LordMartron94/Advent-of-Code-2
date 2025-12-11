@@ -24,4 +24,6 @@ use (
 	./src/2025/day8
 	./src/2025/day9
 	./tools/input
+
+	./tests
 )

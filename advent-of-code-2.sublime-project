@@ -31,6 +31,21 @@
 					"quiet": false,
 				},
 				{
+					"name": "Run ID Gen",
+					"target": "terminus_exec",
+					"cancel": "terminus_cancel_build",
+					"shell_cmd": "./run_id_gen.sh",
+					"working_dir": "${project_path}",
+					"quiet": false,
+				},
+				{
+					"name": "Run Project Analysis",
+					"shell_cmd": "./run_analyzer.sh",
+					"working_dir": "${project_path}",
+					"target": "ansi_color_build",
+					"syntax": "Packages/ANSIescape/ANSI.sublime-syntax",
+				},
+				{
 					"name": "Download Input",
 					"target": "terminus_exec",
 					"cancel": "terminus_cancel_build",
@@ -39,10 +54,18 @@
 					"quiet": false,
 				},
 				{
-					"name": "Add Module",
+					"name": "Add Module (Dialogue)",
 					"target": "terminus_exec",
 					"cancel": "terminus_cancel_build",
 					"shell_cmd": "./add_module.sh",
+					"working_dir": "${project_path}",
+					"quiet": false,
+				},
+				{
+					"name": "Add Module (Batch)",
+					"target": "terminus_exec",
+					"cancel": "terminus_cancel_build",
+					"shell_cmd": "./add_module.sh submodules.conf",
 					"working_dir": "${project_path}",
 					"quiet": false,
 				},
@@ -57,16 +80,12 @@
 			],
 		}
 	],
-	"settings":
-	{
-		"LSP":
-		{
-			"LSP-basedpyright":
-			{
+	"settings": {
+		"LSP": {
+			"LSP-basedpyright": {
 				"enabled": false,
 			},
-			"LSP-ruff":
-			{
+			"LSP-ruff": {
 				"enabled": false
 			},
 		},

@@ -1,0 +1,27 @@
+[submodule "foundation"]
+	path = libs/foundation
+	url = https://github.com/LordMartron94/Foundation
+[submodule "essence"]
+	path = libs/essence
+	url = https://github.com/LordMartron94/Essence
+[submodule "echo"]
+	path = libs/echo
+	url = https://github.com/LordMartron94/Echo
+[submodule "memcore"]
+	path = libs/memcore
+	url = https://github.com/LordMartron94/Memcore
+[submodule "memforge"]
+	path = libs/memforge
+	url = https://github.com/LordMartron94/Memforge
+[submodule "memstruct"]
+	path = libs/memstruct
+	url = https://github.com/LordMartron94/Memstruct
+[submodule "blaze"]
+	path = libs/blaze
+	url = https://github.com/LordMartron94/Blaze
+[submodule "memarch"]
+	path = libs/memarch
+	url = https://github.com/LordMartron94/Memarch
+[submodule "src_analyzer"]
+	path = tools/src_analyzer
+	url = https://github.com/LordMartron94/SRC-Analyzer

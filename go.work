@@ -1,10 +1,20 @@
 go 1.25
 
 use (
-	./tools/input
-	./src/2025/day1
-	./src
 	./libs/aoc_shared
+
+	./libs/blaze
+	./libs/echo
+	./libs/essence
+	./libs/foundation
+	./libs/memarch
+	./libs/memcore
+	./libs/memforge
+	./libs/memstruct
+	./src
+	./src/2025/day1
+	./src/2025/day10
+	./src/2025/day11
 	./src/2025/day2
 	./src/2025/day3
 	./src/2025/day4
@@ -13,6 +23,5 @@ use (
 	./src/2025/day7
 	./src/2025/day8
 	./src/2025/day9
-	./src/2025/day10
-	./src/2025/day11
+	./tools/input
 )

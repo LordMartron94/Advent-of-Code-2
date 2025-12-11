@@ -14,4 +14,5 @@ use (
 	./src/2025/day8
 	./src/2025/day9
 	./src/2025/day10
+	./src/2025/day11
 )

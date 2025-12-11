@@ -3,7 +3,6 @@ package main
 import (
 	aocshared "aoc_shared"
 	"fmt"
-	"slices"
 	"strings"
 )
 
@@ -17,6 +16,7 @@ func main() {
 		"2025 day 11",
 		aocshared.Task{Name: "Get Input", Run: day11.GetInput},
 		aocshared.Task{Name: "Parse Input", Run: day11.ParseInput},
+		aocshared.Task{Name: "Prepare Input", Run: day11.PrepareInput},
 		aocshared.Task{Name: "Solve Part 1", Run: day11.SolvePart1},
 		aocshared.Task{Name: "Solve Part 2", Run: day11.SolvePart2},
 		aocshared.Task{Name: "Print Results", Run: day11.PrintResults},
@@ -24,8 +24,9 @@ func main() {
 }
 
 type day11 struct {
-	input   string
-	devices []device
+	input     string
+	devices   []device
+	deviceMap map[string]device
 
 	numPaths  int
 	numPaths2 int
@@ -64,26 +65,26 @@ func (d *day11) ParseInput() {
 	d.devices = devices
 }
 
-func (d *day11) SolvePart1() {
+func (d *day11) PrepareInput() {
 	deviceMap := map[string]device{}
 
 	for _, device := range d.devices {
 		deviceMap[device.ID] = device
 	}
 
+	deviceMap["out"] = device{ID: "out", Connections: []string{}}
+
+	d.deviceMap = deviceMap
+}
+
+func (d *day11) SolvePart1() {
 	cache := map[string]int{}
-	d.numPaths = solveDevicePt1(deviceMap["you"], cache, deviceMap)
+	d.numPaths = solveDevicePt1(d.deviceMap["you"], cache, d.deviceMap)
 }
 
 func (d *day11) SolvePart2() {
-	deviceMap := map[string]device{}
-
-	for _, device := range d.devices {
-		deviceMap[device.ID] = device
-	}
-
 	cache := map[part2CacheKey]int{}
-	d.numPaths2 = solveDevicePt2(deviceMap["svr"], cache, deviceMap, false, false)
+	d.numPaths2 = solveDevicePt2(d.deviceMap["svr"], cache, d.deviceMap, false, false)
 }
 
 func solveDevicePt1(device device, cache map[string]int, deviceMap map[string]device) int {
@@ -93,7 +94,7 @@ func solveDevicePt1(device device, cache map[string]int, deviceMap map[string]de
 
 	result := 0
 
-	if slices.Contains(device.Connections, "out") {
+	if device.ID == "out" {
 		result += 1
 	} else {
 		for _, otherDeviceID := range device.Connections {
@@ -123,13 +124,14 @@ func solveDevicePt2(device device, cache map[part2CacheKey]int, deviceMap map[st
 
 	result := 0
 
-	if device.ID == "fft" {
+	switch device.ID {
+	case "fft":
 		key.passedFFT = true
-	} else if device.ID == "dac" {
+	case "dac":
 		key.passedDac = true
 	}
 
-	if slices.Contains(device.Connections, "out") && key.passedDac && key.passedFFT {
+	if device.ID == "out" && key.passedDac && key.passedFFT {
 		result += 1
 	} else {
 		for _, otherDeviceID := range device.Connections {

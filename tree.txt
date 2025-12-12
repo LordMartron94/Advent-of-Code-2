@@ -14,6 +14,7 @@
 │   ├── input_downloader
 │   └── src_analyzer
 ├── config.toml
+├── day12
 ├── download_input.sh
 ├── go.work
 ├── libs
@@ -174,6 +175,11 @@
 │   │   │   ├── main.go
 │   │   │   ├── test_input.txt
 │   │   │   └── test_input_2.txt
+│   │   ├── day12
+│   │   │   ├── go.mod
+│   │   │   ├── input.txt
+│   │   │   ├── main.go
+│   │   │   └── test_input.txt
 │   │   ├── day2
 │   │   │   ├── go.mod
 │   │   │   ├── input.txt
@@ -220,7 +226,6 @@
 ├── tests
 │   ├── entry_test.go
 │   └── go.mod
-├── tests.test
 ├── tools
 │   ├── input
 │   │   ├── go.mod
@@ -232,4 +237,4 @@
 │       └── main.go
 └── tree.txt
 
-41 directories, 192 files
+42 directories, 196 files

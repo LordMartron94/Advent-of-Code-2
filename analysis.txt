@@ -8,28 +8,28 @@
 │  Source Analysis Summary   │
 └────────────────────────────┘
 ▶ Project Overview
-Scanned at: 2025-12-12T03:14:40+01:00
-Source files: 114
-Total lines: 18464
-Lines/file (avg): 161.96
-Lines/file (median): 91.00
-Lines/file (p10–p90): 4–431
+Scanned at: 2025-12-12T19:57:27+01:00
+Source files: 115
+Total lines: 19146
+Lines/file (avg): 166.49
+Lines/file (median): 97.00
+Lines/file (p10–p90): 4–441
 Smallest–Largest file: 1–983 lines
-Total size: 556.4 KB
+Total size: 573.3 KB
 
 ▶ Per-file LOC histogram
      1–50 ████████████████████████████ (43)
-   51–100 ███████████                  (18)
-  101–200 █████████████████            (27)
+   51–100 ███████████                  (17)
+  101–200 ██████████████████           (28)
   201–500 ██████████                   (16)
-   501–1k ██████                       (10)
+   501–1k ███████                      (11)
     >  1k                              (0)
 
 ▶ Language Distribution
 ────────────────────────────────────────────────────────────
 Language     Files  Lines  Avg/file      Size
 ────────────────────────────────────────────────────────────
-Go             103  17905    173.83  541.6 KB
+Go             104  18587    178.72  558.5 KB
 Shell            6    378     63.00   10.3 KB
 Go Assembly      2    112     56.00    3.0 KB
 Python           1     57     57.00    1.2 KB
@@ -45,7 +45,7 @@ TOML             2     12      6.00     230 B
    6. Go    libs/memforge/allocator_benchmark_test.go    752 lines
    7. Go    libs/foundation/hash/xxh.go                  708 lines
    8. Go    libs/echo/api.go                             578 lines
-   9. Go    libs/memforge/memory_debugger.go             554 lines
-  10. Go    libs/memforge/fixed_manual_allocator.go      505 lines
+   9. Go    libs/aoc_shared/grid.go                      571 lines
+  10. Go    libs/memforge/memory_debugger.go             554 lines
 
 Done.

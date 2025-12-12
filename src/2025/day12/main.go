@@ -16,7 +16,8 @@ func main() {
 		"2025 day 12",
 		aocshared.Task{Name: "Get Input", Run: day12.GetInput},
 		aocshared.Task{Name: "Parse Input", Run: day12.ParseInput},
-		aocshared.Task{Name: "Solve Pt1", Run: day12.SolvePart1},
+		aocshared.Task{Name: "Solve Pt1 (Area Check)", Run: day12.SolvePart1AreaCheck},
+		aocshared.Task{Name: "Solve Pt1 (Backtracking)", Run: day12.SolvePart1Backtrack},
 		aocshared.Task{Name: "Print Results", Run: day12.PrintResults},
 	)
 }
@@ -150,7 +151,19 @@ func (d *day12) parseRegionLine(line string) (Region, error) {
 	}, nil
 }
 
-func (d *day12) SolvePart1() {
+func (d *day12) SolvePart1AreaCheck() {
+	numValid := 0
+
+	for _, region := range d.regions {
+		if checkRegionAreaOnly(region, d.shapes) {
+			numValid++
+		}
+	}
+
+	fmt.Printf("Dosato's Area Check Result: %d\n", numValid)
+}
+
+func (d *day12) SolvePart1Backtrack() {
 	numValid := 0
 
 	for _, region := range d.regions {
@@ -208,6 +221,27 @@ func solveRegion(region Region, shapes []Shape) bool {
 	)
 }
 
+func checkRegionAreaOnly(region Region, shapes []Shape) bool {
+	totalRequiredArea := 0
+
+	for shapeIdx, required := range region.PresentCounts {
+		if required <= 0 {
+			continue
+		}
+
+		if shapeIdx >= len(shapes) {
+			continue
+		}
+
+		shape := shapes[shapeIdx]
+		totalRequiredArea += shape.NumPartsTrue * required
+	}
+
+	regionArea := region.Width * region.Height
+
+	return regionArea >= totalRequiredArea
+}
+
 func convertShapeToOffsets(shape Shape) []aocshared.ShapeOffset {
 	offsets := make([]aocshared.ShapeOffset, 0)
 
@@ -236,5 +270,4 @@ func createEmptyGrid(width, height int) *aocshared.Grid[bool] {
 
 func (d *day12) PrintResults() {
 	fmt.Printf("Number of Valid Regions: %d\n", d.validRegions)
-	fmt.Printf("Pt 2: %d\n", 0)
 }

@@ -8,14 +8,14 @@
 │  Source Analysis Summary   │
 └────────────────────────────┘
 ▶ Project Overview
-Scanned at: 2025-12-12T19:57:27+01:00
+Scanned at: 2025-12-12T20:06:33+01:00
 Source files: 115
-Total lines: 19146
-Lines/file (avg): 166.49
+Total lines: 19179
+Lines/file (avg): 166.77
 Lines/file (median): 97.00
 Lines/file (p10–p90): 4–441
 Smallest–Largest file: 1–983 lines
-Total size: 573.3 KB
+Total size: 574.0 KB
 
 ▶ Per-file LOC histogram
      1–50 ████████████████████████████ (43)
@@ -29,7 +29,7 @@ Total size: 573.3 KB
 ────────────────────────────────────────────────────────────
 Language     Files  Lines  Avg/file      Size
 ────────────────────────────────────────────────────────────
-Go             104  18587    178.72  558.5 KB
+Go             104  18620    179.04  559.2 KB
 Shell            6    378     63.00   10.3 KB
 Go Assembly      2    112     56.00    3.0 KB
 Python           1     57     57.00    1.2 KB

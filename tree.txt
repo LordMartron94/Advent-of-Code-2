@@ -14,7 +14,6 @@
 │   ├── input_downloader
 │   └── src_analyzer
 ├── config.toml
-├── day12
 ├── download_input.sh
 ├── go.work
 ├── libs
@@ -237,4 +236,4 @@
 │       └── main.go
 └── tree.txt
 
-42 directories, 196 files
+42 directories, 195 files

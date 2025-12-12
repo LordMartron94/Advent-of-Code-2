@@ -1,4 +1,5 @@
 .
+├── Advent-of-Code-2.code-workspace
 ├── README.md
 ├── add_module.sh
 ├── advent-of-code-2.sublime-project
@@ -34,6 +35,7 @@
 │   │   ├── doc.go
 │   │   ├── elementwise
 │   │   │   ├── doc.go
+│   │   │   ├── matrix.go
 │   │   │   └── vector.go
 │   │   ├── go.mod
 │   │   ├── metric
@@ -42,9 +44,13 @@
 │   │   ├── reduce
 │   │   │   ├── doc.go
 │   │   │   └── vector.go
-│   │   └── scalar
+│   │   ├── scalar
+│   │   │   ├── doc.go
+│   │   │   ├── matrix.go
+│   │   │   └── vector.go
+│   │   └── structure
 │   │       ├── doc.go
-│   │       └── vector.go
+│   │       └── matrix.go
 │   ├── echo
 │   │   ├── README.md
 │   │   ├── api.go
@@ -214,6 +220,7 @@
 ├── tests
 │   ├── entry_test.go
 │   └── go.mod
+├── tests.test
 ├── tools
 │   ├── input
 │   │   ├── go.mod
@@ -225,4 +232,4 @@
 │       └── main.go
 └── tree.txt
 
-40 directories, 186 files
+41 directories, 192 files

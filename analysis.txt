@@ -8,28 +8,28 @@
 │  Source Analysis Summary   │
 └────────────────────────────┘
 ▶ Project Overview
-Scanned at: 2025-12-11T18:00:44+01:00
-Source files: 110
-Total lines: 17886
-Lines/file (avg): 162.60
-Lines/file (median): 95.00
-Lines/file (p10–p90): 4–434
-Smallest–Largest file: 1–1032 lines
-Total size: 537.7 KB
+Scanned at: 2025-12-12T03:14:40+01:00
+Source files: 114
+Total lines: 18464
+Lines/file (avg): 161.96
+Lines/file (median): 91.00
+Lines/file (p10–p90): 4–431
+Smallest–Largest file: 1–983 lines
+Total size: 556.4 KB
 
 ▶ Per-file LOC histogram
-     1–50 ████████████████████████████ (42)
-   51–100 ██████████                   (16)
-  101–200 █████████████████            (26)
-  201–500 ███████████                  (17)
-   501–1k █████                        (8)
-    >  1k █                            (1)
+     1–50 ████████████████████████████ (43)
+   51–100 ███████████                  (18)
+  101–200 █████████████████            (27)
+  201–500 ██████████                   (16)
+   501–1k ██████                       (10)
+    >  1k                              (0)
 
 ▶ Language Distribution
 ────────────────────────────────────────────────────────────
 Language     Files  Lines  Avg/file      Size
 ────────────────────────────────────────────────────────────
-Go              99  17327    175.02  522.9 KB
+Go             103  17905    173.83  541.6 KB
 Shell            6    378     63.00   10.3 KB
 Go Assembly      2    112     56.00    3.0 KB
 Python           1     57     57.00    1.2 KB
@@ -37,15 +37,15 @@ TOML             2     12      6.00     230 B
 ────────────────────────────────────────────────────────────
 
 ▶ Top 10 Largest Files (by LOC)
-   1. Go    libs/memstruct/matrix.go                    1032 lines
-   2. Go    libs/memstruct/array.go                      983 lines
+   1. Go    libs/memstruct/array.go                      983 lines
+   2. Go    libs/memstruct/matrix.go                     958 lines
    3. Go    libs/memstruct/vector.go                     871 lines
-   4. Go    libs/memstruct/hashmap.go                    805 lines
-   5. Go    libs/memforge/allocator_benchmark_test.go    752 lines
-   6. Go    libs/foundation/hash/xxh.go                  708 lines
-   7. Go    libs/echo/api.go                             578 lines
-   8. Go    libs/memforge/memory_debugger.go             554 lines
-   9. Go    libs/memforge/fixed_manual_allocator.go      505 lines
-  10. Go    tests/entry_test.go                          459 lines
+   4. Go    tests/entry_test.go                          813 lines
+   5. Go    libs/memstruct/hashmap.go                    805 lines
+   6. Go    libs/memforge/allocator_benchmark_test.go    752 lines
+   7. Go    libs/foundation/hash/xxh.go                  708 lines
+   8. Go    libs/echo/api.go                             578 lines
+   9. Go    libs/memforge/memory_debugger.go             554 lines
+  10. Go    libs/memforge/fixed_manual_allocator.go      505 lines
 
 Done.

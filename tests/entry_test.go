@@ -2,6 +2,9 @@
 package tests
 
 import (
+	"blaze/elementwise"
+	"blaze/scalar"
+	"blaze/structure"
 	"fmt"
 	"memarch"
 	"memcore"
@@ -15,9 +18,10 @@ import (
 
 func TestEntryPoint(t *testing.T) {
 	defer memforge.MemforgeMemoryDebug()
+	foundationtesting.EnableOkMessagesSet(false)
 
 	fmt.Println("Testing matrix: ")
-	testWithTempOkMessages(testMatrix, t)
+	testMatrix(t)
 }
 
 func testMatrix(t *testing.T) {
@@ -39,15 +43,15 @@ func testMatrix(t *testing.T) {
 	// Test 1: Basic initialization and dimensions
 	t.Run("initialization", func(t *testing.T) {
 		matrixMark, matrixPtr := memarch.MemArchMatrixCreate[int](allocFn, 5, 7)
-		foundationtesting.Assert(matrixPtr != nil, "matrix pointer should not be nil", "matrix pointer valid", t)
+		assertTrue(t, matrixPtr != nil, "matrix pointer should not be nil", "matrix pointer valid")
 
 		rows := memstruct.MatrixRowsGet[int](matrixMark)
 		cols := memstruct.MatrixColsGet[int](matrixMark)
 		capacity := memstruct.MatrixCapacityGet[int](matrixMark)
 
-		foundationtesting.Assert(rows == 5, "rows should be 5", "rows correct", t)
-		foundationtesting.Assert(cols == 7, "cols should be 7", "cols correct", t)
-		foundationtesting.Assert(capacity == 35, "capacity should be 35 (5*7)", "capacity correct", t)
+		assertEqual(t, rows, uint64(5), "rows correct")
+		assertEqual(t, cols, uint64(7), "cols correct")
+		assertEqual(t, capacity, uint64(35), "capacity correct")
 	})
 
 	// Test 2: Get/Set operations
@@ -56,23 +60,23 @@ func testMatrix(t *testing.T) {
 
 		// Test SetAt and GetAt
 		err := memstruct.MatrixSetAt(matrixMark, 1, 2, 42)
-		foundationtesting.Assert(err == nil, "SetAt should succeed", "SetAt succeeded", t)
+		assertTrue(t, err == nil, "SetAt should succeed", "SetAt succeeded")
 
 		val, err := memstruct.MatrixItemGetAt[int](matrixMark, 1, 2)
-		foundationtesting.Assert(err == nil, "GetAt should succeed", "GetAt succeeded", t)
-		foundationtesting.Assert(val == 42, "value should be 42", "value correct", t)
+		assertTrue(t, err == nil, "GetAt should succeed", "GetAt succeeded")
+		assertEqual(t, val, 42, "value correct")
 
 		// Test SetAtUnsafe and GetAtUnsafe
 		memstruct.MatrixSetAtUnsafe(matrixMark, 0, 0, 100)
 		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 0)
-		foundationtesting.Assert(val == 100, "unsafe value should be 100", "unsafe value correct", t)
+		assertEqual(t, val, 100, "unsafe value correct")
 
 		// Test bounds checking
 		_, err = memstruct.MatrixItemGetAt[int](matrixMark, 10, 10)
-		foundationtesting.Assert(err != nil, "GetAt should fail for out of bounds", "bounds check works", t)
+		assertTrue(t, err != nil, "GetAt should fail for out of bounds", "bounds check works")
 
 		err = memstruct.MatrixSetAt(matrixMark, 10, 10, 99)
-		foundationtesting.Assert(err != nil, "SetAt should fail for out of bounds", "bounds check works", t)
+		assertTrue(t, err != nil, "SetAt should fail for out of bounds", "bounds check works")
 	})
 
 	// Test 3: SetAll and ZeroAll
@@ -82,12 +86,12 @@ func testMatrix(t *testing.T) {
 		// Set all to 5
 		memstruct.MatrixSetAll(matrixMark, 5)
 		val := memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 1, 1)
-		foundationtesting.Assert(val == 5, "all values should be 5", "SetAll works", t)
+		assertEqual(t, val, 5, "SetAll works")
 
 		// Zero all
 		memstruct.MatrixZeroAll[int](matrixMark)
 		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 1, 1)
-		foundationtesting.Assert(val == 0, "all values should be 0", "ZeroAll works", t)
+		assertEqual(t, val, 0, "ZeroAll works")
 	})
 
 	// Test 4: CopyFrom
@@ -104,14 +108,14 @@ func testMatrix(t *testing.T) {
 
 		// Copy to destination
 		err := memstruct.MatrixCopyFrom[int](dstMark, srcMark, 1, 1)
-		foundationtesting.Assert(err == nil, "CopyFrom should succeed", "CopyFrom succeeded", t)
+		assertTrue(t, err == nil, "CopyFrom should succeed", "CopyFrom succeeded")
 
 		// Verify copied values
 		val := memstruct.MatrixItemGetAtUnsafe[int](dstMark, 1, 1)
-		foundationtesting.Assert(val == 0, "copied value at (1,1) should be 0", "copy correct", t)
+		assertEqual(t, val, 0, "copy correct")
 
 		val = memstruct.MatrixItemGetAtUnsafe[int](dstMark, 2, 3)
-		foundationtesting.Assert(val == 5, "copied value at (2,3) should be 5", "copy correct", t)
+		assertEqual(t, val, 5, "copy correct")
 	})
 
 	// Test 5: CopyFromRange
@@ -128,11 +132,11 @@ func testMatrix(t *testing.T) {
 
 		// Copy range [1:3, 1:3] to destination at [0, 0]
 		err := memstruct.MatrixCopyFromRange[int](dstMark, srcMark, 1, 3, 1, 3, 0, 0)
-		foundationtesting.Assert(err == nil, "CopyFromRange should succeed", "CopyFromRange succeeded", t)
+		assertTrue(t, err == nil, "CopyFromRange should succeed", "CopyFromRange succeeded")
 
 		// Verify: src[1,1] = 5 should be at dst[0,0]
 		val := memstruct.MatrixItemGetAtUnsafe[int](dstMark, 0, 0)
-		foundationtesting.Assert(val == 5, "copied value should be 5", "copy range correct", t)
+		assertEqual(t, val, 5, "copy range correct")
 	})
 
 	// Test 6: Snapshot operations
@@ -148,12 +152,12 @@ func testMatrix(t *testing.T) {
 
 		// Verify snapshot
 		val := memstruct.MatrixItemGetAtUnsafe[int](dstMark, 1, 1)
-		foundationtesting.Assert(val == 99, "snapshot should contain 99", "snapshot correct", t)
+		assertEqual(t, val, 99, "snapshot correct")
 
 		// Modify source, verify snapshot unchanged
 		memstruct.MatrixSetAtUnsafe(srcMark, 1, 1, 0)
 		val = memstruct.MatrixItemGetAtUnsafe[int](dstMark, 1, 1)
-		foundationtesting.Assert(val == 99, "snapshot should still be 99", "snapshot independent", t)
+		assertEqual(t, val, 99, "snapshot independent")
 	})
 
 	// Test 7: SnapshotRestore
@@ -167,13 +171,13 @@ func testMatrix(t *testing.T) {
 
 		// Restore to destination
 		err := memstruct.MatrixSnapshotRestore[int](dstMark, srcMark)
-		foundationtesting.Assert(err == nil, "SnapshotRestore should succeed", "SnapshotRestore succeeded", t)
+		assertTrue(t, err == nil, "SnapshotRestore should succeed", "SnapshotRestore succeeded")
 
 		val := memstruct.MatrixItemGetAtUnsafe[int](dstMark, 0, 0)
-		foundationtesting.Assert(val == 50, "restored value should be 50", "restore correct", t)
+		assertEqual(t, val, 50, "restore correct")
 
 		val = memstruct.MatrixItemGetAtUnsafe[int](dstMark, 1, 1)
-		foundationtesting.Assert(val == 75, "restored value should be 75", "restore correct", t)
+		assertEqual(t, val, 75, "restore correct")
 	})
 
 	// Test 8: Clear
@@ -183,12 +187,12 @@ func testMatrix(t *testing.T) {
 		// Fill with values
 		memstruct.MatrixSetAll(matrixMark, 42)
 		val := memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 0)
-		foundationtesting.Assert(val == 42, "value should be 42", "set works", t)
+		assertEqual(t, val, 42, "set works")
 
 		// Clear
 		memstruct.MatrixClear[int](matrixMark)
 		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 0)
-		foundationtesting.Assert(val == 0, "value should be 0 after clear", "clear works", t)
+		assertEqual(t, val, 0, "clear works")
 	})
 
 	// Test 9: ForEach
@@ -207,7 +211,7 @@ func testMatrix(t *testing.T) {
 		memstruct.MatrixForEachUnsafe[int](matrixMark, func(ptr unsafe.Pointer, row, col uint64) {
 			count++
 		})
-		foundationtesting.Assert(count == 9, "ForEach should visit 9 elements", "ForEach count correct", t)
+		assertEqual(t, count, 9, "ForEach count correct")
 	})
 
 	// Test 10: ReplaceInternal
@@ -218,10 +222,10 @@ func testMatrix(t *testing.T) {
 		memstruct.MatrixSetAtUnsafe(matrixMark, 1, 1, 20)
 
 		err := memstruct.MatrixReplaceInternal[int](matrixMark, 0, 0, 1, 1)
-		foundationtesting.Assert(err == nil, "ReplaceInternal should succeed", "ReplaceInternal succeeded", t)
+		assertTrue(t, err == nil, "ReplaceInternal should succeed", "ReplaceInternal succeeded")
 
 		val := memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 1, 1)
-		foundationtesting.Assert(val == 10, "replaced value should be 10", "replace correct", t)
+		assertEqual(t, val, 10, "replace correct")
 	})
 
 	// Test 11: IsIdxValid
@@ -229,16 +233,16 @@ func testMatrix(t *testing.T) {
 		matrixMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 3, 4)
 
 		valid := memstruct.MatrixIsIdxValid[int](matrixMark, 0, 0)
-		foundationtesting.Assert(valid, "(0,0) should be valid", "valid index works", t)
+		assertTrue(t, valid, "(0,0) should be valid", "valid index works")
 
 		valid = memstruct.MatrixIsIdxValid[int](matrixMark, 2, 3)
-		foundationtesting.Assert(valid, "(2,3) should be valid", "valid index works", t)
+		assertTrue(t, valid, "(2,3) should be valid", "valid index works")
 
 		valid = memstruct.MatrixIsIdxValid[int](matrixMark, 3, 0)
-		foundationtesting.Assert(!valid, "(3,0) should be invalid", "invalid index detected", t)
+		assertFalse(t, valid, "(3,0) should be invalid", "invalid index detected")
 
 		valid = memstruct.MatrixIsIdxValid[int](matrixMark, 0, 4)
-		foundationtesting.Assert(!valid, "(0,4) should be invalid", "invalid index detected", t)
+		assertFalse(t, valid, "(0,4) should be invalid", "invalid index detected")
 	})
 
 	// Test 12: MatrixView
@@ -257,20 +261,20 @@ func testMatrix(t *testing.T) {
 
 		rows := memstruct.MatrixViewRowsGet(view)
 		cols := memstruct.MatrixViewColsGet(view)
-		foundationtesting.Assert(rows == 2, "view should have 2 rows", "view rows correct", t)
-		foundationtesting.Assert(cols == 2, "view should have 2 cols", "view cols correct", t)
+		assertEqual(t, rows, uint64(2), "view rows correct")
+		assertEqual(t, cols, uint64(2), "view cols correct")
 
 		// Access view element (relative to view)
 		val, err := memstruct.MatrixViewItemGetAt(view, 0, 0)
-		foundationtesting.Assert(err == nil, "ViewItemGetAt should succeed", "view get succeeded", t)
-		foundationtesting.Assert(val == 6, "view[0,0] should be 6 (matrix[1,1])", "view value correct", t)
+		assertTrue(t, err == nil, "ViewItemGetAt should succeed", "view get succeeded")
+		assertEqual(t, val, 6, "view value correct")
 
 		// Modify through view
 		err = memstruct.MatrixViewItemSetAt(view, 0, 0, 999)
-		foundationtesting.Assert(err == nil, "ViewItemSetAt should succeed", "view set succeeded", t)
+		assertTrue(t, err == nil, "ViewItemSetAt should succeed", "view set succeeded")
 
 		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 1, 1)
-		foundationtesting.Assert(val == 999, "matrix[1,1] should be 999", "view modification works", t)
+		assertEqual(t, val, 999, "view modification works")
 	})
 
 	// Test 13: Readonly view
@@ -281,20 +285,20 @@ func testMatrix(t *testing.T) {
 		view := memstruct.MatrixViewGet[int](matrixMark, 0, 2, 0, 2, true)
 
 		readonly := memstruct.MatrixViewIsReadonly(view)
-		foundationtesting.Assert(readonly, "view should be readonly", "readonly flag correct", t)
+		assertTrue(t, readonly, "view should be readonly", "readonly flag correct")
 
 		// Should be able to read
 		val, err := memstruct.MatrixViewItemGetAt(view, 1, 1)
-		foundationtesting.Assert(err == nil, "readonly view should allow read", "readonly read works", t)
-		foundationtesting.Assert(val == 42, "readonly view value should be 42", "readonly value correct", t)
+		assertTrue(t, err == nil, "readonly view should allow read", "readonly read works")
+		assertEqual(t, val, 42, "readonly value correct")
 
 		// Should not be able to get pointer
 		_, err = memstruct.MatrixViewItemPtrGetAt(view, 1, 1)
-		foundationtesting.Assert(err != nil, "readonly view should not allow pointer", "readonly pointer blocked", t)
+		assertTrue(t, err != nil, "readonly view should not allow pointer", "readonly pointer blocked")
 
 		// Should not be able to set
 		err = memstruct.MatrixViewItemSetAt(view, 1, 1, 99)
-		foundationtesting.Assert(err != nil, "readonly view should not allow set", "readonly set blocked", t)
+		assertTrue(t, err != nil, "readonly view should not allow set", "readonly set blocked")
 	})
 
 	// Test 14: Nested view
@@ -315,8 +319,8 @@ func testMatrix(t *testing.T) {
 		nestedView := memstruct.MatrixViewNestedGet(outerView, 0, 2, 0, 2)
 
 		val, err := memstruct.MatrixViewItemGetAt(nestedView, 0, 0)
-		foundationtesting.Assert(err == nil, "nested view get should succeed", "nested view works", t)
-		foundationtesting.Assert(val == 6, "nested view[0,0] should be 6", "nested view correct", t)
+		assertTrue(t, err == nil, "nested view get should succeed", "nested view works")
+		assertEqual(t, val, 6, "nested view correct")
 	})
 
 	// Test 15: UnaryExecute
@@ -333,7 +337,7 @@ func testMatrix(t *testing.T) {
 		}, 1)
 
 		val := memstruct.MatrixItemGetAtUnsafe[int](dstMark, 1, 1)
-		foundationtesting.Assert(val == 10, "unary result should be 10", "unary execute works", t)
+		assertEqual(t, val, 10, "unary execute works")
 	})
 
 	// Test 16: BinaryExecute
@@ -352,7 +356,7 @@ func testMatrix(t *testing.T) {
 		}, 1)
 
 		val := memstruct.MatrixItemGetAtUnsafe[int](dstMark, 0, 0)
-		foundationtesting.Assert(val == 7, "binary result should be 7", "binary execute works", t)
+		assertEqual(t, val, 7, "binary execute works")
 	})
 
 	// Test 17: BinaryReadOnlyExecute
@@ -368,7 +372,7 @@ func testMatrix(t *testing.T) {
 			sum += a + b
 		}, 1)
 
-		foundationtesting.Assert(sum == 32, "sum should be 32 (4 elements * 8)", "binary readonly works", t)
+		assertEqual(t, sum, 32, "binary readonly works")
 	})
 
 	// Test 18: UnaryReadOnlyExecute
@@ -381,7 +385,7 @@ func testMatrix(t *testing.T) {
 			count++
 		}, 1)
 
-		foundationtesting.Assert(count == 9, "should visit 9 elements", "unary readonly works", t)
+		assertEqual(t, count, 9, "unary readonly works")
 	})
 
 	// Test 19: Different numeric types
@@ -390,13 +394,13 @@ func testMatrix(t *testing.T) {
 		f32Mark, _ := memarch.MemArchMatrixCreate[float32](allocFn, 2, 2)
 		memstruct.MatrixSetAtUnsafe[float32](f32Mark, 0, 0, 3.14)
 		val := memstruct.MatrixItemGetAtUnsafe[float32](f32Mark, 0, 0)
-		foundationtesting.Assert(val == 3.14, "float32 value should be 3.14", "float32 works", t)
+		assertEqualFloat(t, float64(val), 3.14, 0.001, "float32 works")
 
 		// Test int64
 		i64Mark, _ := memarch.MemArchMatrixCreate[int64](allocFn, 2, 2)
 		memstruct.MatrixSetAtUnsafe[int64](i64Mark, 1, 1, 123456789)
 		val64 := memstruct.MatrixItemGetAtUnsafe[int64](i64Mark, 1, 1)
-		foundationtesting.Assert(val64 == 123456789, "int64 value should be 123456789", "int64 works", t)
+		assertEqual(t, val64, int64(123456789), "int64 works")
 	})
 
 	// Test 20: Edge cases - 1x1 matrix
@@ -405,7 +409,7 @@ func testMatrix(t *testing.T) {
 
 		memstruct.MatrixSetAtUnsafe(matrixMark, 0, 0, 42)
 		val := memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 0)
-		foundationtesting.Assert(val == 42, "1x1 matrix should work", "1x1 matrix works", t)
+		assertEqual(t, val, 42, "1x1 matrix works")
 	})
 
 	// Test 21: Edge cases - single row
@@ -417,7 +421,7 @@ func testMatrix(t *testing.T) {
 		}
 
 		val := memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 3)
-		foundationtesting.Assert(val == 3, "single row matrix should work", "single row works", t)
+		assertEqual(t, val, 3, "single row works")
 	})
 
 	// Test 22: Edge cases - single column
@@ -429,7 +433,7 @@ func testMatrix(t *testing.T) {
 		}
 
 		val := memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 3, 0)
-		foundationtesting.Assert(val == 3, "single column matrix should work", "single column works", t)
+		assertEqual(t, val, 3, "single column works")
 	})
 
 	// Test 23: CreateFrom
@@ -447,7 +451,325 @@ func testMatrix(t *testing.T) {
 
 		// Verify copy
 		val := memstruct.MatrixItemGetAtUnsafe[int](dstMark, 1, 2)
-		foundationtesting.Assert(val == 5, "CreateFrom should copy values", "CreateFrom works", t)
+		assertEqual(t, val, 5, "CreateFrom works")
+	})
+
+	// ────────────────────────────────────────────────────────────────
+	//   BLAZE MATRIX OPERATIONS TESTS
+	// ────────────────────────────────────────────────────────────────
+
+	// Test 24: Elementwise Add
+	t.Run("blaze_elementwise_add", func(t *testing.T) {
+		aMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		bMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		cMark, _ := memarch.MemArchMatrixCreate[float64](allocFn, 2, 2)
+
+		memstruct.MatrixSetAtUnsafe(aMark, 0, 0, 1)
+		memstruct.MatrixSetAtUnsafe(aMark, 0, 1, 2)
+		memstruct.MatrixSetAtUnsafe(aMark, 1, 0, 3)
+		memstruct.MatrixSetAtUnsafe(aMark, 1, 1, 4)
+
+		memstruct.MatrixSetAtUnsafe(bMark, 0, 0, 5)
+		memstruct.MatrixSetAtUnsafe(bMark, 0, 1, 6)
+		memstruct.MatrixSetAtUnsafe(bMark, 1, 0, 7)
+		memstruct.MatrixSetAtUnsafe(bMark, 1, 1, 8)
+
+		elementwise.BlazeElementWiseMatrixAddF64[int, int](aMark, bMark, cMark)
+
+		val := memstruct.MatrixItemGetAtUnsafe[float64](cMark, 0, 0)
+		assertEqualFloat(t, val, 6, 0.001, "elementwise add works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[float64](cMark, 1, 1)
+		assertEqualFloat(t, val, 12, 0.001, "elementwise add works")
+	})
+
+	// Test 25: Elementwise Subtract
+	t.Run("blaze_elementwise_subtract", func(t *testing.T) {
+		aMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		bMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		cMark, _ := memarch.MemArchMatrixCreate[float64](allocFn, 2, 2)
+
+		memstruct.MatrixSetAtUnsafe(aMark, 0, 0, 10)
+		memstruct.MatrixSetAtUnsafe(aMark, 1, 1, 20)
+
+		memstruct.MatrixSetAtUnsafe(bMark, 0, 0, 3)
+		memstruct.MatrixSetAtUnsafe(bMark, 1, 1, 5)
+
+		elementwise.BlazeElementWiseMatrixSubtractF64[int, int](aMark, bMark, cMark)
+
+		val := memstruct.MatrixItemGetAtUnsafe[float64](cMark, 0, 0)
+		assertEqual(t, val, 7, "elementwise subtract works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[float64](cMark, 1, 1)
+		assertEqual(t, val, 15, "elementwise subtract works")
+	})
+
+	// Test 26: Elementwise Multiply (Hadamard product)
+	t.Run("blaze_elementwise_multiply", func(t *testing.T) {
+		aMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		bMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		cMark, _ := memarch.MemArchMatrixCreate[float64](allocFn, 2, 2)
+
+		memstruct.MatrixSetAtUnsafe(aMark, 0, 0, 3)
+		memstruct.MatrixSetAtUnsafe(aMark, 1, 1, 4)
+
+		memstruct.MatrixSetAtUnsafe(bMark, 0, 0, 2)
+		memstruct.MatrixSetAtUnsafe(bMark, 1, 1, 5)
+
+		elementwise.BlazeElementWiseMatrixMultiplyF64[int, int](aMark, bMark, cMark)
+
+		val := memstruct.MatrixItemGetAtUnsafe[float64](cMark, 0, 0)
+		assertEqual(t, val, 6, "elementwise multiply works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[float64](cMark, 1, 1)
+		assertEqual(t, val, 20, "elementwise multiply works")
+	})
+
+	// Test 27: Elementwise Divide
+	t.Run("blaze_elementwise_divide", func(t *testing.T) {
+		aMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		bMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		cMark, _ := memarch.MemArchMatrixCreate[float64](allocFn, 2, 2)
+
+		memstruct.MatrixSetAtUnsafe(aMark, 0, 0, 20)
+		memstruct.MatrixSetAtUnsafe(aMark, 1, 1, 15)
+
+		memstruct.MatrixSetAtUnsafe(bMark, 0, 0, 4)
+		memstruct.MatrixSetAtUnsafe(bMark, 1, 1, 3)
+
+		elementwise.BlazeElementWiseMatrixDivideF64[int, int](aMark, bMark, cMark)
+
+		val := memstruct.MatrixItemGetAtUnsafe[float64](cMark, 0, 0)
+		assertEqualFloat(t, val, 5.0, 0.001, "elementwise divide works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[float64](cMark, 1, 1)
+		assertEqualFloat(t, val, 5.0, 0.001, "elementwise divide works")
+	})
+
+	// Test 28: Scalar Multiply
+	t.Run("blaze_scalar_multiply", func(t *testing.T) {
+		srcMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		dstMark, _ := memarch.MemArchMatrixCreate[float64](allocFn, 2, 2)
+
+		memstruct.MatrixSetAtUnsafe(srcMark, 0, 0, 5)
+		memstruct.MatrixSetAtUnsafe(srcMark, 1, 1, 10)
+
+		scalar.BlazeScalarMatrixMultiplyF64[int](srcMark, dstMark, 2.5)
+
+		val := memstruct.MatrixItemGetAtUnsafe[float64](dstMark, 0, 0)
+		assertEqualFloat(t, val, 12.5, 0.001, "scalar multiply works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[float64](dstMark, 1, 1)
+		assertEqualFloat(t, val, 25.0, 0.001, "scalar multiply works")
+	})
+
+	// Test 29: Scalar Divide
+	t.Run("blaze_scalar_divide", func(t *testing.T) {
+		srcMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		dstMark, _ := memarch.MemArchMatrixCreate[float64](allocFn, 2, 2)
+
+		memstruct.MatrixSetAtUnsafe(srcMark, 0, 0, 20)
+		memstruct.MatrixSetAtUnsafe(srcMark, 1, 1, 30)
+
+		scalar.BlazeScalarMatrixDivideF64[int](srcMark, dstMark, 4.0)
+
+		val := memstruct.MatrixItemGetAtUnsafe[float64](dstMark, 0, 0)
+		assertEqualFloat(t, val, 5.0, 0.001, "scalar divide works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[float64](dstMark, 1, 1)
+		assertEqualFloat(t, val, 7.5, 0.001, "scalar divide works")
+	})
+
+	// Test 30: Scalar Add
+	t.Run("blaze_scalar_add", func(t *testing.T) {
+		srcMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		dstMark, _ := memarch.MemArchMatrixCreate[float64](allocFn, 2, 2)
+
+		memstruct.MatrixSetAtUnsafe(srcMark, 0, 0, 5)
+		memstruct.MatrixSetAtUnsafe(srcMark, 1, 1, 10)
+
+		scalar.BlazeScalarMatrixAddF64[int](srcMark, dstMark, 3.5)
+
+		val := memstruct.MatrixItemGetAtUnsafe[float64](dstMark, 0, 0)
+		assertEqualFloat(t, val, 8.5, 0.001, "scalar add works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[float64](dstMark, 1, 1)
+		assertEqualFloat(t, val, 13.5, 0.001, "scalar add works")
+	})
+
+	// Test 31: Scalar Subtract
+	t.Run("blaze_scalar_subtract", func(t *testing.T) {
+		srcMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		dstMark, _ := memarch.MemArchMatrixCreate[float64](allocFn, 2, 2)
+
+		memstruct.MatrixSetAtUnsafe(srcMark, 0, 0, 10)
+		memstruct.MatrixSetAtUnsafe(srcMark, 1, 1, 15)
+
+		scalar.BlazeScalarMatrixSubtractF64[int](srcMark, dstMark, 2.5)
+
+		val := memstruct.MatrixItemGetAtUnsafe[float64](dstMark, 0, 0)
+		assertEqualFloat(t, val, 7.5, 0.001, "scalar subtract works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[float64](dstMark, 1, 1)
+		assertEqualFloat(t, val, 12.5, 0.001, "scalar subtract works")
+	})
+
+	// Test 32: Scalar Clamp
+	t.Run("blaze_scalar_clamp", func(t *testing.T) {
+		matrixMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 3, 3)
+
+		memstruct.MatrixSetAtUnsafe(matrixMark, 0, 0, 5)
+		memstruct.MatrixSetAtUnsafe(matrixMark, 0, 1, 15)
+		memstruct.MatrixSetAtUnsafe(matrixMark, 1, 0, -5)
+		memstruct.MatrixSetAtUnsafe(matrixMark, 1, 1, 25)
+
+		scalar.BlazeScalarMatrixClamp(matrixMark, 0, 20)
+
+		val := memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 0)
+		assertEqual(t, val, 5, "clamp works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 1)
+		assertEqual(t, val, 15, "clamp works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 1, 0)
+		assertEqual(t, val, 0, "clamp min works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 1, 1)
+		assertEqual(t, val, 20, "clamp max works")
+	})
+
+	// Test 33: Scalar SetAllSequence
+	t.Run("blaze_scalar_set_all_sequence", func(t *testing.T) {
+		matrixMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 3, 3)
+
+		scalar.BlazeScalarMatrixSetAllSequence(matrixMark, 10, 2)
+
+		// Check first few values: 10, 12, 14, 16, ...
+		val := memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 0)
+		assertEqual(t, val, 10, "sequence works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 1)
+		assertEqual(t, val, 12, "sequence works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 2)
+		assertEqual(t, val, 14, "sequence works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 1, 0)
+		assertEqual(t, val, 16, "sequence works")
+	})
+
+	// Test 34: Transpose (non-square)
+	t.Run("blaze_structure_transpose_non_square", func(t *testing.T) {
+		srcMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 3)
+		dstMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 3, 2)
+
+		// Fill source: 2x3 matrix
+		// [1, 2, 3]
+		// [4, 5, 6]
+		memstruct.MatrixSetAtUnsafe(srcMark, 0, 0, 1)
+		memstruct.MatrixSetAtUnsafe(srcMark, 0, 1, 2)
+		memstruct.MatrixSetAtUnsafe(srcMark, 0, 2, 3)
+		memstruct.MatrixSetAtUnsafe(srcMark, 1, 0, 4)
+		memstruct.MatrixSetAtUnsafe(srcMark, 1, 1, 5)
+		memstruct.MatrixSetAtUnsafe(srcMark, 1, 2, 6)
+
+		structure.BlazeStructureMatrixTranspose[int](srcMark, dstMark)
+
+		// Verify transpose: 3x2 matrix
+		// [1, 4]
+		// [2, 5]
+		// [3, 6]
+		val := memstruct.MatrixItemGetAtUnsafe[int](dstMark, 0, 0)
+		assertEqual(t, val, 1, "transpose works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](dstMark, 0, 1)
+		assertEqual(t, val, 4, "transpose works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](dstMark, 1, 0)
+		assertEqual(t, val, 2, "transpose works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](dstMark, 2, 1)
+		assertEqual(t, val, 6, "transpose works")
+	})
+
+	// Test 35: Transpose (square, in-place)
+	t.Run("blaze_structure_transpose_square_inplace", func(t *testing.T) {
+		matrixMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 3, 3)
+
+		// Fill matrix:
+		// [1, 2, 3]
+		// [4, 5, 6]
+		// [7, 8, 9]
+		for row := uint64(0); row < 3; row++ {
+			for col := uint64(0); col < 3; col++ {
+				memstruct.MatrixSetAtUnsafe(matrixMark, row, col, int(row*3+col+1))
+			}
+		}
+
+		structure.BlazeStructureMatrixTranspose[int](matrixMark, matrixMark)
+
+		// Verify transpose:
+		// [1, 4, 7]
+		// [2, 5, 8]
+		// [3, 6, 9]
+		val := memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 0)
+		assertEqual(t, val, 1, "in-place transpose works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 0, 1)
+		assertEqual(t, val, 4, "in-place transpose works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 1, 0)
+		assertEqual(t, val, 2, "in-place transpose works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](matrixMark, 2, 2)
+		assertEqual(t, val, 9, "in-place transpose works")
+	})
+
+	// Test 36: Transpose (square, separate matrices)
+	t.Run("blaze_structure_transpose_square_separate", func(t *testing.T) {
+		srcMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		dstMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+
+		// Fill source:
+		// [1, 2]
+		// [3, 4]
+		memstruct.MatrixSetAtUnsafe(srcMark, 0, 0, 1)
+		memstruct.MatrixSetAtUnsafe(srcMark, 0, 1, 2)
+		memstruct.MatrixSetAtUnsafe(srcMark, 1, 0, 3)
+		memstruct.MatrixSetAtUnsafe(srcMark, 1, 1, 4)
+
+		structure.BlazeStructureMatrixTranspose[int](srcMark, dstMark)
+
+		// Verify transpose:
+		// [1, 3]
+		// [2, 4]
+		val := memstruct.MatrixItemGetAtUnsafe[int](dstMark, 0, 0)
+		assertEqual(t, val, 1, "transpose works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](dstMark, 0, 1)
+		assertEqual(t, val, 3, "transpose works")
+
+		val = memstruct.MatrixItemGetAtUnsafe[int](dstMark, 1, 0)
+		assertEqual(t, val, 2, "transpose works")
+
+		// Verify source unchanged
+		val = memstruct.MatrixItemGetAtUnsafe[int](srcMark, 0, 1)
+		assertEqual(t, val, 2, "transpose preserves source")
+	})
+
+	// Test 37: Float32 precision operations
+	t.Run("blaze_float32_precision", func(t *testing.T) {
+		aMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		bMark, _ := memarch.MemArchMatrixCreate[int](allocFn, 2, 2)
+		cMark, _ := memarch.MemArchMatrixCreate[float32](allocFn, 2, 2)
+
+		memstruct.MatrixSetAtUnsafe(aMark, 0, 0, 3)
+		memstruct.MatrixSetAtUnsafe(bMark, 0, 0, 2)
+
+		elementwise.BlazeElementWiseMatrixAddF32[int, int](aMark, bMark, cMark)
+
+		val := memstruct.MatrixItemGetAtUnsafe[float32](cMark, 0, 0)
+		assertEqualFloat(t, float64(val), 5.0, 0.001, "float32 works")
 	})
 }
 
@@ -455,4 +777,36 @@ func testWithTempOkMessages(test func(t *testing.T), t *testing.T) {
 	foundationtesting.EnableOkMessagesSet(true)
 	test(t)
 	foundationtesting.EnableOkMessagesSet(false)
+}
+
+// assertEqual is a helper that asserts two values are equal and shows expected/got on failure.
+func assertEqual[T comparable](t *testing.T, got, expected T, successMsg string) {
+	if got != expected {
+		foundationtesting.Assert(false, fmt.Sprintf("expected %v, got %v", expected, got), successMsg, t)
+	} else {
+		foundationtesting.Assert(true, "", successMsg, t)
+	}
+}
+
+// assertEqualFloat is a helper for float comparisons with epsilon tolerance.
+func assertEqualFloat(t *testing.T, got, expected, epsilon float64, successMsg string) {
+	diff := got - expected
+	if diff < 0 {
+		diff = -diff
+	}
+	if diff > epsilon {
+		foundationtesting.Assert(false, fmt.Sprintf("expected %v, got %v (diff: %v)", expected, got, diff), successMsg, t)
+	} else {
+		foundationtesting.Assert(true, "", successMsg, t)
+	}
+}
+
+// assertTrue is a helper that asserts a condition is true.
+func assertTrue(t *testing.T, condition bool, errorMsg, successMsg string) {
+	foundationtesting.Assert(condition, errorMsg, successMsg, t)
+}
+
+// assertFalse is a helper that asserts a condition is false.
+func assertFalse(t *testing.T, condition bool, errorMsg, successMsg string) {
+	foundationtesting.Assert(!condition, errorMsg, successMsg, t)
 }
